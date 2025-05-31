@@ -7,7 +7,7 @@ AWS_SECRET_ACCESS_KEY=
 
 AWS_REGION = us-east-1
 
-AWS_ECR_LOGIN_URI = 788614365622.dkr.ecr.us-east-1.amazonaws.com/networkssecurity
+AWS_ECR_LOGIN_URI = 122610524935.dkr.ecr.us-east-1.amazonaws.com
 ECR_REPOSITORY_NAME = networkssecurity
 
 
