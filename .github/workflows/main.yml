@@ -102,5 +102,5 @@ jobs:
             ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
       
       - name: Clean previous images and containers
-        run: |
+        run: 
           docker system prune -f
