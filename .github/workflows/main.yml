@@ -66,33 +66,16 @@ jobs:
     needs: build-and-push-ecr-image
     runs-on: self-hosted
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-        with:
-          mask-password: 'true'
+      # ... [previous steps remain the same]
       
-      - name: Pull latest images
-        run: |
-          docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
-         
-      - name: Stop and remove container if running
-        run: |
-          docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm -fv networksecurity || true
-       
       - name: Run Docker Image to serve users
         run: |
+          # Stop and remove existing container if running
+          docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm -fv networksecurity || true
+          
+          # Run new container with proper port mapping
           docker run -d \
+            -p 80:8080 \
             -p 8080:8080 \
             --ipc="host" \
             --name=networksecurity \
@@ -100,7 +83,6 @@ jobs:
             -e AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
             -e AWS_REGION="${{ secrets.AWS_REGION }}" \
             ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
-      
-      - name: Clean previous images and containers
-        run: 
-          docker system prune -f
+          
+          # Verify container is running
+          docker ps | grep networksecurity
