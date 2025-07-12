@@ -1,7 +1,10 @@
 services:
-    - type: web
-      name: ml-portfolio-app
+    -  type: web
+      name: network-security-app
       runtime: python
       buildCommand: pip install -r requirements.txt
-      startCommand: gunicorn --bind 0.0.0.0:$PORT app:app  # Adjusted command
-       plan: free
+      startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+      envVars:
+        - key: MONGODB_URL_KEY
+          sync: false  # Set this in Render dashboard
+      plan: free
