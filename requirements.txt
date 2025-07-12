@@ -13,4 +13,5 @@ fastapi
 uvicorn
 python-multipart
 dnspython 
+gunicorn
 ##-e .
