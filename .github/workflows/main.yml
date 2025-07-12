@@ -1,8 +1,7 @@
 services:
-   - type: web
-    name: ml-portfolio-app  # Your service name
-    runtime: docker  # Use "python" if not Dockerized
-    env: python
-    buildCommand: docker build -t my-ml-app .  # Only for Docker
-    startCommand: python app.py  # Or "gunicorn app:app" for Flask/FastAPI
-    plan: free  # Free tier (sleeps after inactivity)
+    - type: web
+      name: ml-portfolio-app
+      runtime: python
+      buildCommand: pip install -r requirements.txt
+      startCommand: gunicorn --bind 0.0.0.0:$PORT app:app  # Adjusted command
+       plan: free
