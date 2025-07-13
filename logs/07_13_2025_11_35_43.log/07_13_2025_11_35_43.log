@@ -1,0 +1,9 @@
+[ 2025-07-13 11:35:49,398 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 401 Unauthorized"
+[ 2025-07-13 11:38:34,319 ] 1025 httpx - INFO - HTTP Request: POST https://dagshub.com/login/oauth/middleman "HTTP/1.1 200 OK"
+[ 2025-07-13 11:38:34,895 ] 1025 httpx - INFO - HTTP Request: POST https://dagshub.com/login/oauth/access_token "HTTP/1.1 200 OK"
+[ 2025-07-13 11:38:35,386 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-13 11:38:35,426 ] 107 dagshub - INFO - Accessing as Rishu0200
+[ 2025-07-13 11:38:35,895 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Rishu0200/NetworkSecurity "HTTP/1.1 200 OK"
+[ 2025-07-13 11:38:36,321 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-13 11:38:36,332 ] 107 dagshub - INFO - Initialized MLflow to track repo "Rishu0200/NetworkSecurity"
+[ 2025-07-13 11:38:36,332 ] 107 dagshub - INFO - Repository Rishu0200/NetworkSecurity initialized!
